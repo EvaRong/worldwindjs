@@ -465,6 +465,103 @@ $(document).ready(function() {
         };
     }
 
+    //TODO need to work on the heat map function for challenge 7
+    //TODO the table for the heatmap lat. and long. is saved on desktop
+    //TODO convert to JSON object, then check heatmap.js on how to add a heatmap, if possible at the given points.
+
+    [
+        {
+            "Lat": 47.1443,
+            "Lng": -122.1408,
+            "": ""
+        },
+        {
+            "Lat": 48.5602,
+            "Lng": -122.4311,
+            "": ""
+        },
+        {
+            "Lat": 46.6085,
+            "Lng": -121.6702,
+            "": ""
+        },
+        {
+            "Lat": 47.5862,
+            "Lng": -122.5482,
+            "": ""
+        },
+        {
+            "Lat": 47.5207,
+            "Lng": -122.5196,
+            "": ""
+        },
+        {
+            "Lat": 47.8432,
+            "Lng": -120.8157,
+            "": ""
+        },
+        {
+            "Lat": 46.6437,
+            "Lng": -118.5565,
+            "": ""
+        },
+        {
+            "Lat": 47.6813,
+            "Lng": -118.0164,
+            "": ""
+        },
+        {
+            "Lat": 46.754,
+            "Lng": -118.3106,
+            "": ""
+        },
+        {
+            "Lat": 47.6154,
+            "Lng": -121.9096,
+            "": ""
+        },
+        {
+            "Lat": 46.4412,
+            "Lng": -122.8493,
+            "": ""
+        },
+        {
+            "Lat": 47.2429,
+            "Lng": -122.0576,
+            "": ""
+        },
+        {
+            "Lat": 47.4758,
+            "Lng": -122.1905,
+            "": ""
+        },
+        {
+            "Lat": 46.6637,
+            "Lng": -122.9647,
+            "": ""
+        },
+        {
+            "Lat": 47.2335,
+            "Lng": -118.4053,
+            "": ""
+        },
+        {
+            "Lat": 47.6632,
+            "Lng": -122.6499,
+            "": ""
+        },
+        {
+            "Lat": 46.9838,
+            "Lng": -118.3427,
+            "": ""
+        },
+        {
+            "Lat": 47.1487,
+            "Lng": -122.5512,
+            "": ""
+        }
+    ]
+
     /**
      * Tools view model for tools palette on the globe
      * @param {Globe} globe
@@ -703,11 +800,11 @@ $(document).ready(function() {
          * "Edit" function invokes a modal dialog to edit the marker attributes.
          * @param {WorldWind.Placemark} marker
          */
-        self.editMarker = function(marker) {
-            // TODO bind marker to dialog, maybe create an individual marker view-model
-            // let options = {};
-            // $('#editMarkerModal').modal(options)
-        };
+        // self.editMarker = function(marker) {
+        //     // TODO bind marker to dialog, maybe create an individual marker view-model
+        //     // let options = {};
+        //     // $('#editMarkerModal').modal(options)
+        // };
 
         /**
          * "Remove" function removes a marker from the globe.
