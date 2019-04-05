@@ -184,62 +184,37 @@ $(document).ready(function() {
         console.error("app.js: A Bing API key is required to use the Bing maps in production. Get your API key at https://www.bingmapsportal.com/");
     }
 
-    // Web Map Service information from NASA's Near Earth Observations WMS
-    let serviceAddress = "http://aworldbridgelabs.com:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
-    // Named layer displaying Average Temperature data
-    let layerName = "EG_test:states";
-
-    // Called asynchronously to parse and create the WMS layer
-    let createLayer = function (xmlDom) {
-        // Create a WmsCapabilities object from the XML DOM
-        let wms = new WorldWind.WmsCapabilities(xmlDom);
-        // Retrieve a WmsLayerCapabilities object by the desired layer name
-        let wmsLayerCapabilities = wms.getNamedLayer(layerName);
-        // Form a configuration object from the WmsLayerCapability object
-        let wmsConfig = WorldWind.WmsLayer.formLayerConfiguration(wmsLayerCapabilities);
-        // Modify the configuration objects title property to a more user friendly title
-        wmsConfig.title = "WMS Layer";
-        // Create the WMS Layer from the configuration object
-        let wmsLayer = new WorldWind.WmsLayer(wmsConfig);
-
-        // Add the layers to WorldWind and update the layer manager
-        globe.addLayer(wmsLayer, {
-            displayName: "WMS Layer"
-        });
-        // layerManager.synchronizeLayerList();
-
-
-        // // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
-        // var locations = [];
-        // for (var i = 0; i < 10000; i++) {
-        //     locations.push(
-        //         new WorldWind.MeasuredLocation(
-        //             -89 + (179 * Math.random()),
-        //             -179 + (359 * Math.random()),
-        //             Math.ceil(100 * Math.random())
-        //         )
-        //     );
-        // }
-        //
-        // var heatmaplayer = new WorldWind.HeatMapLayer(locations);
-        // // Add new HeatMap Layer with the points as the data source.
-        // // globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locations));
-        // globe.addLayer(heatmaplayer, {
-        //     displayName: "HeatMap"
-        // })
-
-        var test = [
-            [47.1443,-122.1408],
-            [47.1443,-122.1408]
-        ]
-    };
-
-    // Called if an error occurs during WMS Capabilities document retrieval
-    let logError = function (jqXhr, text, exception) {
-        console.log("There was a failure retrieving the capabilities document: " + text + " exception: " + exception);
-    };
-
-    $.get(serviceAddress).done(createLayer).fail(logError);
+    // // Web Map Service information from NASA's Near Earth Observations WMS
+    // let serviceAddress = "http://aworldbridgelabs.com:8080/geoserver/ows?service=wms&version=1.3.0&request=GetCapabilities";
+    // // Named layer displaying Average Temperature data
+    // let layerName = "EG_test:states";
+    //
+    // // Called asynchronously to parse and create the WMS layer
+    // let createLayer = function (xmlDom) {
+    //     // Create a WmsCapabilities object from the XML DOM
+    //     let wms = new WorldWind.WmsCapabilities(xmlDom);
+    //     // Retrieve a WmsLayerCapabilities object by the desired layer name
+    //     let wmsLayerCapabilities = wms.getNamedLayer(layerName);
+    //     // Form a configuration object from the WmsLayerCapability object
+    //     let wmsConfig = WorldWind.WmsLayer.formLayerConfiguration(wmsLayerCapabilities);
+    //     // Modify the configuration objects title property to a more user friendly title
+    //     wmsConfig.title = "WMS Layer";
+    //     // Create the WMS Layer from the configuration object
+    //     let wmsLayer = new WorldWind.WmsLayer(wmsConfig);
+    //
+    //     // Add the layers to WorldWind and update the layer manager
+    //     globe.addLayer(wmsLayer, {
+    //         displayName: "WMS Layer"
+    //     });
+    //     // layerManager.synchronizeLayerList();
+    // };
+    //
+    // // Called if an error occurs during WMS Capabilities document retrieval
+    // let logError = function (jqXhr, text, exception) {
+    //     console.log("There was a failure retrieving the capabilities document: " + text + " exception: " + exception);
+    // };
+    //
+    // $.get(serviceAddress).done(createLayer).fail(logError);
 
     // Set the MapQuest API key used for the Nominatim service.
     // Get your own key at https://developer.mapquest.com/
@@ -247,171 +222,6 @@ $(document).ready(function() {
     const MAPQUEST_API_KEY = "";
 
 
-
-    // class Globe {
-    //     constructor(canvasId, projectionName) {
-    //         // Create a WorldWindow globe on the specified HTML5 canvas
-    //         this.wwd = new WorldWind.WorldWindow(canvasId);
-    //
-    //         // Projection support
-    //         this.roundGlobe = this.wwd.globe;
-    //         this.flatGlobe = null;
-    //         if (projectionName) {
-    //             this.changeProjection(projectionName);
-    //         }
-    //
-    //         // A map of category and 'observable' timestamp pairs
-    //         this.categoryTimestamps = new Map();
-    //
-    //         // Add a BMNGOneImageLayer background layer. We're overriding the default
-    //         // minimum altitude of the BMNGOneImageLayer so this layer always available.
-    //         this.addLayer(new WorldWind.BMNGOneImageLayer(), {
-    //             category: "background",
-    //             minActiveAltitude: 0
-    //         });
-    //
-    //     }
-    //
-    //     get projectionNames() {
-    //         return [
-    //             "3D",
-    //             "Equirectangular",
-    //             "Mercator",
-    //             "North Polar",
-    //             "South Polar",
-    //             "North UPS",
-    //             "South UPS",
-    //             "North Gnomonic",
-    //             "South Gnomonic"
-    //         ];
-    //     }
-    //
-    //     changeProjection(projectionName) {
-    //         if (projectionName === "3D") {
-    //             if (!this.roundGlobe) {
-    //                 this.roundGlobe = new WorldWind.Globe(new WorldWind.EarthElevationModel());
-    //             }
-    //             if (this.wwd.globe !== this.roundGlobe) {
-    //                 this.wwd.globe = this.roundGlobe;
-    //             }
-    //         } else {
-    //             if (!this.flatGlobe) {
-    //                 this.flatGlobe = new WorldWind.Globe2D();
-    //             }
-    //             if (projectionName === "Equirectangular") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionEquirectangular();
-    //             } else if (projectionName === "Mercator") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionMercator();
-    //             } else if (projectionName === "North Polar") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("North");
-    //             } else if (projectionName === "South Polar") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionPolarEquidistant("South");
-    //             } else if (projectionName === "North UPS") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionUPS("North");
-    //             } else if (projectionName === "South UPS") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionUPS("South");
-    //             } else if (projectionName === "North Gnomonic") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("North");
-    //             } else if (projectionName === "South Gnomonic") {
-    //                 this.flatGlobe.projection = new WorldWind.ProjectionGnomonic("South");
-    //             }
-    //             if (this.wwd.globe !== this.flatGlobe) {
-    //                 this.wwd.globe = this.flatGlobe;
-    //             }
-    //         }
-    //     }
-    //
-    //     /**
-    //      * Returns a new array of layers within the given category.
-    //      * @param {String} category E.g., "base", "overlay" or "setting".
-    //      * @returns {Array}
-    //      */
-    //     getLayers(category) {
-    //         return this.wwd.layers.filter(layer => layer.category === category);
-    //     }
-    //
-    //     /**
-    //      * Add a layer to the globe and applies options object properties to the
-    //      * the layer.
-    //      * @param {WorldWind.Layer} layer
-    //      * @param {Object|null} options E.g., {category: "base", enabled: true}
-    //      */
-    //     addLayer(layer, options) {
-    //         // Copy all properties defined on the options object to the layer
-    //         if (options) {
-    //             for (let prop in options) {
-    //                 if (!options.hasOwnProperty(prop)) {
-    //                     continue; // skip inherited props
-    //                 }
-    //                 layer[prop] = options[prop];
-    //             }
-    //         }
-    //         // Assign a category property for layer management
-    //         if (typeof layer.category === 'undefined') {
-    //             layer.category = 'overlay'; // default category
-    //         }
-    //
-    //         // Assign a unique layer ID to ease layer management
-    //         layer.uniqueId = this.nextLayerId++;
-    //         // Add the layer to the globe
-    //         this.wwd.addLayer(layer);
-    //         // Signal a change in the category
-    //         this.updateCategoryTimestamp(layer.category);
-    //     }
-    //
-    //     /**
-    //      * Toggles the enabled state of the given layer and updates the layer
-    //      * catetory timestamp. Applies a rule to the 'base' layers the ensures
-    //      * only one base layer is enabled.
-    //      * @param {WorldWind.Layer} layer
-    //      */
-    //     toggleLayer(layer) {
-    //         // Apply rule: only one "base" layer can be enabled at a time
-    //         if (layer.category === 'base') {
-    //             this.wwd.layers.forEach(function(item) {
-    //                 if (item.category === 'base' && item !== layer) {
-    //                     item.enabled = false;
-    //                 }
-    //             });
-    //         }
-    //         // Toggle the selected layer's visibility
-    //         layer.enabled = !layer.enabled;
-    //         // Trigger a redraw so the globe shows the new layer state ASAP
-    //         this.wwd.redraw();
-    //         // Signal a change in the category
-    //         this.updateCategoryTimestamp(layer.category);
-    //     }
-    //
-    //     /**
-    //      * Returns an observable containing the last update timestamp for the category.
-    //      * @param {String} category
-    //      * @returns {Observable}
-    //      */
-    //     getCategoryTimestamp(category) {
-    //         if (!this.categoryTimestamps.has(category)) {
-    //             this.categoryTimestamps.set(category, ko.observable());
-    //         }
-    //         return this.categoryTimestamps.get(category);
-    //     }
-    //
-    //     /**
-    //      * Updates the timestamp for the given category.
-    //      * @param {String} category
-    //      */
-    //     updateCategoryTimestamp(category) {
-    //         let timestamp = this.getCategoryTimestamp(category);
-    //         timestamp(new Date());
-    //     }
-    //     /**
-    //      * Returns the first layer with the given name.
-    //      * @param {String} name
-    //      * @returns {WorldWind.Layer|null}
-    //      */
-    //     findLayerByName(name) {
-    //         let layers = this.wwd.layers.filter(layer => layer.displayName === name);
-    //         return layers.length > 0 ? layers[0] : null;
-    //     }
-    // }
 
     /**
      * loadLayers is a utility function used by the view models to copy
@@ -469,98 +279,134 @@ $(document).ready(function() {
     //TODO the table for the heatmap lat. and long. is saved on desktop
     //TODO convert to JSON object, then check heatmap.js on how to add a heatmap, if possible at the given points.
 
-    [
+    var locationPoints = [
         {
             "Lat": 47.1443,
             "Lng": -122.1408,
-            "": ""
         },
         {
             "Lat": 48.5602,
             "Lng": -122.4311,
-            "": ""
         },
         {
             "Lat": 46.6085,
             "Lng": -121.6702,
-            "": ""
         },
         {
             "Lat": 47.5862,
             "Lng": -122.5482,
-            "": ""
         },
         {
             "Lat": 47.5207,
             "Lng": -122.5196,
-            "": ""
         },
         {
             "Lat": 47.8432,
             "Lng": -120.8157,
-            "": ""
         },
         {
             "Lat": 46.6437,
             "Lng": -118.5565,
-            "": ""
         },
         {
             "Lat": 47.6813,
             "Lng": -118.0164,
-            "": ""
         },
         {
             "Lat": 46.754,
             "Lng": -118.3106,
-            "": ""
         },
         {
             "Lat": 47.6154,
             "Lng": -121.9096,
-            "": ""
         },
         {
             "Lat": 46.4412,
             "Lng": -122.8493,
-            "": ""
         },
         {
             "Lat": 47.2429,
             "Lng": -122.0576,
-            "": ""
         },
         {
             "Lat": 47.4758,
             "Lng": -122.1905,
-            "": ""
         },
         {
             "Lat": 46.6637,
             "Lng": -122.9647,
-            "": ""
         },
         {
             "Lat": 47.2335,
             "Lng": -118.4053,
-            "": ""
         },
         {
             "Lat": 47.6632,
             "Lng": -122.6499,
-            "": ""
         },
         {
             "Lat": 46.9838,
             "Lng": -118.3427,
-            "": ""
         },
         {
             "Lat": 47.1487,
             "Lng": -122.5512,
-            "": ""
+        },
+        {
+            "Lat": 46.2509,
+            "Lng": -123.8576,
+        },
+        {
+            "Lat": 46.7872,
+            "Lng": -122.2666,
+        },
+        {
+            "Lat": 46.8951,
+            "Lng": -121.267,
+        },
+        {
+            "Lat": 48.0499,
+            "Lng": -118.985,
+        },
+        {
+            "Lat": 47.3381,
+            "Lng": -117.2313,
+        },
+        {
+            "Lat": 47.8045,
+            "Lng": -122.1435,
+        },
+        {
+            "Lat": 47.8114,
+            "Lng": -122.6563,
         }
-    ]
+    ];
+    console.log(locationPoints.length);
+
+
+    // // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
+    // var locations = [];
+    // for (var i = 0; i < 10000; i++) {
+    //     locations.push(
+    //         new WorldWind.MeasuredLocation(
+    //             -89 + (179 * Math.random()),
+    //             -179 + (359 * Math.random()),
+    //             Math.ceil(100 * Math.random())
+    //         )
+    //     );
+    // }
+    //
+    // var heatmaplayer = new WorldWind.HeatMapLayer(locations);
+    // // Add new HeatMap Layer with the points as the data source.
+    // // globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locations));
+    // globe.addLayer(heatmaplayer, {
+    //     displayName: "HeatMap"
+    // })
+
+    // for (var l = 0; l < locationPoints.length; l++) {
+    //
+    // }
+
 
     /**
      * Tools view model for tools palette on the globe
@@ -939,7 +785,6 @@ $(document).ready(function() {
     let globe = new Globe("globe-canvas");
     // Add layers ordered by drawing order: first to last
     // Add layers to the globe
-    // Add layers ordered by drawing order: first to last
     globe.addLayer(new WorldWind.BMNGLayer(), {
         category: "base"
     });
@@ -991,6 +836,29 @@ $(document).ready(function() {
         category: "debug",
         enabled: false
     });
+    // globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locationPoints), {
+    //     category: "overlay",
+    //     displayName: "HeatMap"
+    // });
+
+    // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
+    var locations = [];
+    for (var i = 0; i < 10000; i++) {
+        locations.push(
+            new WorldWind.MeasuredLocation(
+                -89 + (179 * Math.random()),
+                -179 + (359 * Math.random()),
+                Math.ceil(100 * Math.random())
+            )
+        );
+    }
+
+    // Add new HeatMap Layer with the points as the data source.
+    globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locations), {
+        displayName: "HeatMap"
+    });
+
+    console.log(WorldWind.MeasuredLocation);
 
 
     // Activate the Knockout bindings between our view models and the html
