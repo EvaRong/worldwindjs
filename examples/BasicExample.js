@@ -275,112 +275,146 @@ $(document).ready(function() {
         };
     }
 
-    //TODO need to work on the heat map function for challenge 7
-    //TODO the table for the heatmap lat. and long. is saved on desktop
-    //TODO convert to JSON object, then check heatmap.js on how to add a heatmap, if possible at the given points.
+    //TODO the heat map generates 10000 random points on my globe already, now i just need to make the appear at the given points from locationPoints
 
     var locationPoints = [
         {
             "Lat": 47.1443,
             "Lng": -122.1408,
+            "Dens": 100,
         },
         {
             "Lat": 48.5602,
             "Lng": -122.4311,
+            "Dens": 100,
         },
         {
             "Lat": 46.6085,
             "Lng": -121.6702,
+            "Dens": 100,
         },
         {
             "Lat": 47.5862,
             "Lng": -122.5482,
+            "Dens": 100,
         },
         {
             "Lat": 47.5207,
             "Lng": -122.5196,
+            "Dens": 100,
         },
         {
             "Lat": 47.8432,
             "Lng": -120.8157,
+            "Dens": 100,
         },
         {
             "Lat": 46.6437,
             "Lng": -118.5565,
+            "Dens": 100,
         },
         {
             "Lat": 47.6813,
             "Lng": -118.0164,
+            "Dens": 100,
         },
         {
             "Lat": 46.754,
             "Lng": -118.3106,
+            "Dens": 100,
         },
         {
             "Lat": 47.6154,
             "Lng": -121.9096,
+            "Dens": 100,
         },
         {
             "Lat": 46.4412,
             "Lng": -122.8493,
+            "Dens": 100,
         },
         {
             "Lat": 47.2429,
             "Lng": -122.0576,
+            "Dens": 100,
         },
         {
             "Lat": 47.4758,
             "Lng": -122.1905,
+            "Dens": 100,
         },
         {
             "Lat": 46.6637,
             "Lng": -122.9647,
+            "Dens": 100,
         },
         {
             "Lat": 47.2335,
             "Lng": -118.4053,
+            "Dens": 100,
         },
         {
             "Lat": 47.6632,
             "Lng": -122.6499,
+            "Dens": 100,
         },
         {
             "Lat": 46.9838,
             "Lng": -118.3427,
+            "Dens": 100,
         },
         {
             "Lat": 47.1487,
             "Lng": -122.5512,
+            "Dens": 100,
         },
         {
             "Lat": 46.2509,
             "Lng": -123.8576,
+            "Dens": 100,
         },
         {
             "Lat": 46.7872,
             "Lng": -122.2666,
+            "Dens": 100,
         },
         {
             "Lat": 46.8951,
             "Lng": -121.267,
+            "Dens": 100,
         },
         {
             "Lat": 48.0499,
             "Lng": -118.985,
+            "Dens": 100,
         },
         {
             "Lat": 47.3381,
             "Lng": -117.2313,
+            "Dens": 100,
         },
         {
             "Lat": 47.8045,
             "Lng": -122.1435,
+            "Dens": 100,
         },
         {
             "Lat": 47.8114,
             "Lng": -122.6563,
+            "Dens": 100,
         }
     ];
+
+    for (var l = 0; l < locationPoints.length; l++) {
+        // console.log(locationPoints[l].Lat);
+        // console.log(locationPoints[l].Lng);
+        console.log(locationPoints[l].Dens);
+    }
+
+    for (var a = 0; a < locationPoints.length; a++) {
+        // console.log(locationPoints[l].Lng);
+        console.log(locationPoints[a].Dens);
+    }
     console.log(locationPoints.length);
 
 
@@ -531,7 +565,6 @@ $(document).ready(function() {
                     }
 
                     for (let newP = 0; newP < newPickList.objects.length; newP++) {
-
                         if (newPickList.objects[newP].userObject instanceof WorldWind.Placemark) {
 
                             console.log(newPickList.objects[newP].userObject);
@@ -539,9 +572,9 @@ $(document).ready(function() {
 
                             myNewFunction(myX, myY, placemarkAttributes.position.latitude, placemarkAttributes.position.longitude);
 
-                            for (let l = 0; l < Lati.length; l++) {
-
-                            }
+                            // for (let l = 0; l < Lati.length; l++) {
+                            //
+                            // }
                         }
 
                         else {
@@ -841,14 +874,20 @@ $(document).ready(function() {
     //     displayName: "HeatMap"
     // });
 
+    //TODO I changed the latitude, longitude, and density value of the instance, but the heat map still doens't want to change
+    //TODO Further up when I'm console.logging the lat, i wanted to console.log lng and dens, but it doesn't show up in the console.
+
+
+
+
     // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
     var locations = [];
-    for (var i = 0; i < 10000; i++) {
+    for (var i = 0; i < locationPoints.length; i++) {
         locations.push(
             new WorldWind.MeasuredLocation(
-                -89 + (179 * Math.random()),
-                -179 + (359 * Math.random()),
-                Math.ceil(100 * Math.random())
+                locationPoints[i].Lat,
+                locationPoints[i].Lng,
+                locationPoints[i].Dens
             )
         );
     }
