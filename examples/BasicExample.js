@@ -402,19 +402,94 @@ $(document).ready(function() {
             "Lat": 47.8114,
             "Lng": -122.6563,
             "Dens": 100,
-        }
+        },
+        {
+            "Lat": 47.5207,
+            "Lng": -122.2068,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.2405,
+            "Lng": -121.1733,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.5508,
+            "Lng": -122.6655,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.5625,
+            "Lng": -122.2265,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.8285,
+            "Lng": -122.3034,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.612,
+            "Lng": -119.2892,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.6212,
+            "Lng": -120.0048,
+            "Dens": 100,
+        },
+        {
+            "Lat": 46.7226,
+            "Lng": -122.9695,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.8266,
+            "Lng": -117.3419,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.5034,
+            "Lng": -122.2329,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.6663,
+            "Lng": -122.6828,
+            "Dens": 100,
+        },
+        {
+            "Lat": 45.6956,
+            "Lng": -121.2805,
+            "Dens": 100,
+        },
+        {
+            "Lat": 48.2919,
+            "Lng": -119.6955,
+            "Dens": 100,
+        },
+        {
+            "Lat": 47.792,
+            "Lng": -122.3076,
+            "Dens": 100,
+        },
+        {
+            "Lat": 46.3108,
+            "Lng": -124.0422,
+            "Dens": 100,
+        },
     ];
 
     for (var l = 0; l < locationPoints.length; l++) {
-        // console.log(locationPoints[l].Lat);
-        // console.log(locationPoints[l].Lng);
+        console.log(locationPoints[l].Lat);
+        console.log(locationPoints[l].Lng);
         console.log(locationPoints[l].Dens);
     }
 
-    for (var a = 0; a < locationPoints.length; a++) {
-        // console.log(locationPoints[l].Lng);
-        console.log(locationPoints[a].Dens);
-    }
+    // for (var a = 0; a < locationPoints.length; a++) {
+    //     // console.log(locationPoints[l].Lng);
+    //     console.log(locationPoints[a].Dens);
+    // }
     console.log(locationPoints.length);
 
 
@@ -869,18 +944,8 @@ $(document).ready(function() {
         category: "debug",
         enabled: false
     });
-    // globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locationPoints), {
-    //     category: "overlay",
-    //     displayName: "HeatMap"
-    // });
-
-    //TODO I changed the latitude, longitude, and density value of the instance, but the heat map still doens't want to change
-    //TODO Further up when I'm console.logging the lat, i wanted to console.log lng and dens, but it doesn't show up in the console.
 
 
-
-
-    // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
     var locations = [];
     for (var i = 0; i < locationPoints.length; i++) {
         locations.push(
