@@ -276,9 +276,7 @@ requirejs(['../src/WorldWind.js'],
             };
         }
 
-        //TODO the heat map generates 10000 random points on my globe already, now i just need to make the appear at the given points from locationPoints
-
-        var locationPoints = [
+        let locationPoints = [
             {
                 "Lat": 47.1443,
                 "Lng": -122.1408,
@@ -539,38 +537,9 @@ requirejs(['../src/WorldWind.js'],
         for (var l = 0; l < locationPoints.length; l++) {
             console.log(locationPoints[l].Lat);
             console.log(locationPoints[l].Lng);
-            // console.log(locationPoints[l].Dens);
         }
 
-        // for (var a = 0; a < locationPoints.length; a++) {
-        //     // console.log(locationPoints[l].Lng);
-        //     console.log(locationPoints[a].Dens);
-        // }
         console.log(locationPoints.length);
-
-
-        // // Generate 10000 random points to display on the HeatMap with varying intensity over the area of the whole world.
-        // var locations = [];
-        // for (var i = 0; i < 10000; i++) {
-        //     locations.push(
-        //         new WorldWind.MeasuredLocation(
-        //             -89 + (179 * Math.random()),
-        //             -179 + (359 * Math.random()),
-        //             Math.ceil(100 * Math.random())
-        //         )
-        //     );
-        // }
-        //
-        // var heatmaplayer = new WorldWind.HeatMapLayer(locations);
-        // // Add new HeatMap Layer with the points as the data source.
-        // // globe.addLayer(new WorldWind.HeatMapLayer("HeatMap", locations));
-        // globe.addLayer(heatmaplayer, {
-        //     displayName: "HeatMap"
-        // })
-
-        // for (var l = 0; l < locationPoints.length; l++) {
-        //
-        // }
 
 
         /**
@@ -639,7 +608,6 @@ requirejs(['../src/WorldWind.js'],
                 placemark.eyeDistanceScalingThreshold = 2500000;
 
                 let Lati = position.latitude.toPrecision(4).toString();
-                // let Long = position.longitude.toPrecision(5).toString();
                 let Poppy = $(".popover");
 
 
@@ -660,9 +628,6 @@ requirejs(['../src/WorldWind.js'],
                     Poppy.css({"top":y, "left":x});
                 }
 
-                // function mine() {
-                //     Poppy.popover("hide");
-                // }
 
                 let handlePick =  function (o) {
                     let newX = o.clientX,
@@ -703,9 +668,6 @@ requirejs(['../src/WorldWind.js'],
 
                                 myNewFunction(myX, myY, placemarkAttributes.position.latitude, placemarkAttributes.position.longitude);
 
-                                // for (let l = 0; l < Lati.length; l++) {
-                                //
-                                // }
                             }
 
                             else {
@@ -810,11 +772,6 @@ requirejs(['../src/WorldWind.js'],
              * "Edit" function invokes a modal dialog to edit the marker attributes.
              * @param {WorldWind.Placemark} marker
              */
-            // self.editMarker = function(marker) {
-            //     // TODO bind marker to dialog, maybe create an individual marker view-model
-            //     // let options = {};
-            //     // $('#editMarkerModal').modal(options)
-            // };
 
             /**
              * "Remove" function removes a marker from the globe.
