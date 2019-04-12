@@ -47,8 +47,8 @@ define([
             this.displayName = "Blue Marble";
             this.pickEnabled = false;
 
-            this.urlBuilder = new WmsUrlBuilder("https://worldwind25.arc.nasa.gov/wms",
-                layerName || "BlueMarble-200405", "", "1.3.0");
+            // this.urlBuilder = new WmsUrlBuilder("https://worldwind25.arc.nasa.gov/wms",
+            //     layerName || "BlueMarble-200405", "", "1.3.0");
         };
 
         BMNGLayer.prototype = Object.create(TiledImageLayer.prototype);

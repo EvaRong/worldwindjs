@@ -49,7 +49,7 @@ define([
                 if (child.localName === "ProviderName") {
                     this.providerName = child.textContent;
                 } else if (child.localName === "ProviderSite") {
-                    this.providerSiteUrl = child.getAttribute("xlink:href");
+                    this.providerSiteUrl = "https://cors.aworldbridgelabs.com:9084/" + child.getAttribute("xlink:href");
                 } else if (child.localName === "ServiceContact") {
                     this.serviceContact = OwsServiceProvider.assembleServiceContact(child);
                 }

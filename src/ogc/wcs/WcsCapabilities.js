@@ -311,7 +311,7 @@ define([
                 var child = children[c];
 
                 if (child.localName === "OnlineResource") {
-                    return child.getAttribute("xlink:href");
+                    return ("https://cors.aworldbridgelabs.com:9084/" + child.getAttribute("xlink:href"));
                 }
             }
         };

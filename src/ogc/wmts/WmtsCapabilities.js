@@ -245,7 +245,7 @@ define([
         WmtsCapabilities.assembleServiceMetadataURL = function (element) {
             var result = {};
 
-            var link = element.getAttribute("xlink:href");
+            var link = "https://cors.aworldbridgelabs.com:9084/" + element.getAttribute("xlink:href");
             if (link) {
                 result.url = link;
             }

@@ -140,7 +140,7 @@ define([
         OwsOperationsMetadata.assembleMethod = function (element) {
             var result = {};
 
-            result.url = element.getAttribute("xlink:href");
+            result.url = "https://cors.aworldbridgelabs.com:9084/" + element.getAttribute("xlink:href");
 
             var children = element.children || element.childNodes;
             for (var c = 0; c < children.length; c++) {

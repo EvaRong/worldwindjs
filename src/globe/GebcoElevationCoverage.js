@@ -43,7 +43,8 @@ define([
                 retrievalImageFormat: "application/bil16",
                 minElevation: -11000,
                 maxElevation: 8850,
-                urlBuilder: new WmsUrlBuilder("https://worldwind26.arc.nasa.gov/elev", "GEBCO", "", "1.3.0")
+                urlBuilder: new WmsUrlBuilder("https://cors.aworldbridgelabs.com:9084/http://emxsys.net/worldwind26/elev", "GEBCO", "", "1.3.0")
+                // urlBuilder: new WmsUrlBuilder("https://worldwind26.arc.nasa.gov/elev", "GEBCO", "", "1.3.0")
             });
 
             this.displayName = "GEBCO Earth Elevation Coverage";

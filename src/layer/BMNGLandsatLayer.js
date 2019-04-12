@@ -44,8 +44,8 @@ define([
             this.displayName = "Blue Marble & Landsat";
             this.pickEnabled = false;
 
-            this.urlBuilder = new WmsUrlBuilder("https://worldwind25.arc.nasa.gov/wms",
-                "BlueMarble-200405,esat", "", "1.3.0");
+            // this.urlBuilder = new WmsUrlBuilder("https://worldwind25.arc.nasa.gov/wms",
+            //     "BlueMarble-200405,esat", "", "1.3.0");
         };
 
         BMNGLandsatLayer.prototype = Object.create(TiledImageLayer.prototype);

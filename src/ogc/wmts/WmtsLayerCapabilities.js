@@ -300,7 +300,7 @@ define([
         WmtsLayerCapabilities.assembleMetadata = function (element) { // TODO
             var result = {};
 
-            var link = element.getAttribute("xlink:href");
+            var link = "https://cors.aworldbridgelabs.com:9084/" + element.getAttribute("xlink:href");
             if (link) {
                 result.url = link;
             }
@@ -353,7 +353,7 @@ define([
             result.format = element.getAttribute("format");
             result.minScaleDenominator = element.getAttribute("minScaleDenominator");
             result.maxScaleDenominator = element.getAttribute("maxScaleDenominator");
-            result.href = element.getAttribute("xlink:href");
+            result.href = "https://cors.aworldbridgelabs.com:9084/" + element.getAttribute("xlink:href");
             result.width = element.getAttribute("width");
             result.height = element.getAttribute("height");
 

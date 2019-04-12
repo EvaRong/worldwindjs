@@ -750,7 +750,7 @@ define([
                     result.title = childElement.textContent;
 
                 } else if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
 
                 } else if (childElement.localName === "LogoUrul") {
                     result.logoUrl = WmsLayerCapabilities.assembleLogoUrl(childElement);
@@ -770,7 +770,7 @@ define([
                 var childElement = children[c];
 
                 if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
                 }
             }
 
@@ -799,7 +799,7 @@ define([
                     result.format = childElement.textContent;
 
                 } else if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
                 }
             }
 
@@ -820,7 +820,7 @@ define([
                     result.format = childElement.textContent;
 
                 } else if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
                 }
             }
 
@@ -841,7 +841,7 @@ define([
                     result.format = childElement.textContent;
 
                 } else if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
                 }
             }
 
@@ -859,7 +859,7 @@ define([
                     result.format = childElement.textContent;
 
                 } else if (childElement.localName === "OnlineResource") {
-                    result.url = childElement.getAttribute("xlink:href");
+                    result.url = "https://cors.aworldbridgelabs.com:9084/" + childElement.getAttribute("xlink:href");
                 }
             }
 

@@ -137,7 +137,7 @@ define([
                 } else if (child.localName === "KeywordList") {
                     service.keywordList = this.assembleKeywordList(child);
                 } else if (child.localName === "OnlineResource") {
-                    service.url = child.getAttribute("xlink:href");
+                    service.url = "https://cors.aworldbridgelabs.com:9084/" + child.getAttribute("xlink:href");
                 } else if (child.localName === "Fees") {
                     service.fees = child.textContent;
                 } else if (child.localName === "AccessConstraints") {
@@ -304,7 +304,7 @@ define([
                                     for (var c4 = 0; c4 < children4.length; c4++) {
                                         var child4 = children4[c4];
                                         if (child4.localName === "OnlineResource") {
-                                            request.getUrl = child4.getAttribute("xlink:href");
+                                            request.getUrl = "https://cors.aworldbridgelabs.com:9084/" + child4.getAttribute("xlink:href");
                                         }
                                     }
                                 }

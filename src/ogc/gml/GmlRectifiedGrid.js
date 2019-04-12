@@ -46,7 +46,7 @@ define([
                 if (child.localName === "description") {
                     this.description = child.textContent;
                 } else if (child.localName === "descriptionReference") {
-                    this.descriptionReference = child.getAttribute("xlink:href");
+                    this.descriptionReference = "https://cors.aworldbridgelabs.com:9084/" + child.getAttribute("xlink:href");
                 } else if (child.localName === "identifier") {
                     this.identifier = child.textContent;
                 } else if (child.localName === "name") {
@@ -113,7 +113,7 @@ define([
         GmlRectifiedGrid.prototype.assembleOrigin = function (element) {
             var origin = {};
             origin.type = element.getAttribute("xlink:type");
-            origin.href = element.getAttribute("xlink:href");
+            origin.href = "https://cors.aworldbridgelabs.com:9084/" + element.getAttribute("xlink:href");
             origin.role = element.getAttribute("xlink:role");
             origin.arcrole = element.getAttribute("xlink:arcrole");
             origin.title = element.getAttribute("xlink:title");
